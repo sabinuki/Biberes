@@ -1,11 +1,19 @@
 import React, { Fragment, useEffect } from 'react';
-import Search from '../components/Search.jsx';
+import styled from 'styled-components';
+import DiagnosesButton from '../components/Buttons/DiagnosesButton.jsx';
+
+const Body = styled.div`
+  text-align: center;
+`;
 
 export const Diagnoses = () => {
   return (
     <Fragment>
-      <p>ビアスタイル診断</p>
-      <Search />
+      <Body>
+        <p>好みを選択するだけであなたにおすすめのビアスタイルを提案いたします。</p>
+        <p>今すぐあなたに合うビアスタイルを探してみましょう！</p>
+        <DiagnosesButton />
+      </Body>
     </Fragment>
   )
 }
