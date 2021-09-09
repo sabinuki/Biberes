@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import Search from '../components/Search.jsx';
 
 export const Diagnoses = () => {
   return (
     <Fragment>
-      ビアスタイル診断
+      <p>ビアスタイル診断</p>
+      <Search />
     </Fragment>
   )
 }
