@@ -6,17 +6,13 @@ import {
   Route,
 } from "react-router-dom";
 
-import { Diagnoses } from './containers/Diagnoses.jsx';
+import { Default } from './Default';
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route
-          exact
-          path="/diagnoses">
-          <Diagnoses/>
-        </Route>
+        <Route path="/" component={Default} />
       </Switch>
     </Router>
   );
