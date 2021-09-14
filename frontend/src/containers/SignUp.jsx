@@ -49,43 +49,48 @@ export const SignUp = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                autoComplete="name"
-                name="name"
-                variant="outlined"
-                required
-                fullWidth
+                autoComplete="off"
                 id="name"
                 label="Name"
+                name="name"
+                variant="outlined"
                 autoFocus
+                fullWidth
+                required
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                autoComplete="off"
+                id="user-id"
+                label="User Id"
+                name="user-id"
                 variant="outlined"
-                required
                 fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="off"
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email"
+                variant="outlined"
+                fullWidth
+                required
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
+                autoComplete="off"
                 id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="Password"
+                name="password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                required
               />
             </Grid>
           </Grid>
