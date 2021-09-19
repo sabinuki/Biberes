@@ -106,7 +106,7 @@ export const SignUp = () => {
               <TextField
                 autoComplete="off"
                 id="user-id"
-                label="User Id"
+                label="User ID"
                 name="user-id"
                 variant="outlined"
                 fullWidth
