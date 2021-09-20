@@ -7,30 +7,8 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 1
-# Configuration parameters: Database, Include.
-# SupportedDatabases: mysql, postgresql
-# Include: db/migrate/*.rb
-Rails/BulkChangeTable:
-  Exclude:
-    - 'db/migrate/20210911052940_devise_token_auth_create_users.rb'
-
-# Offense count: 1
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: slashes, arguments
 Rails/FilePath:
   Exclude:
     - 'config/environments/development.rb'
-
-# Offense count: 1
-# Configuration parameters: Include.
-# Include: db/migrate/*.rb
-Rails/NotNullColumn:
-  Exclude:
-    - 'db/migrate/20210918121356_add_user_id_to_users.rb'
-
-# Offense count: 1
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/UniqueValidationWithoutIndex:
-  Exclude:
-    - 'app/models/user.rb'
