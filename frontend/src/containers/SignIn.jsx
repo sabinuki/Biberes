@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
+import Cookies from 'js-cookie';
+import { signIn } from '../lib/api/auth';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -34,6 +37,38 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignIn = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const params = {
+      email: email,
+      password: password
+    }
+
+    try {
+      const res = await signIn(params)
+      console.log(res)
+
+      if (res.status === 200) {
+        Cookies.set("_access_token", res.headers["access-token"])
+        Cookies.set("_client", res.headers["client"])
+        Cookies.set("_uid", res.headers["uid"])
+
+        // TODO: マイページに飛ぶよう修正する
+        history.push("/")
+      } else {
+        // TODO: ステータスコードが200以外の場合はアラートを表示する
+      }
+    } catch (err) {
+      console.log(err)
+      // TODO: システムエラー発生時のアラートを表示する
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,6 +91,7 @@ export const SignIn = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={event => setEmail(event.target.value)}
           />
           <TextField
             variant="outlined"
@@ -67,6 +103,7 @@ export const SignIn = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={event => setPassword(event.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -78,6 +115,7 @@ export const SignIn = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Sign In
           </Button>
