@@ -56,7 +56,6 @@ export const SignUp = () => {
 
     try {
       const res = await signUp(params)
-      console.log(res)
 
       if (res.status === 200) {
         // ひとまずアカウント作成と同時にログインさせてしまう
@@ -66,13 +65,10 @@ export const SignUp = () => {
         Cookies.set("_uid", res.headers["uid"])
 
         history.push("/")
-
-        console.log("Signed in successfully!")
       } else {
         // TODO: ステータスコードが200以外の場合はアラートを表示する
       }
     } catch (err) {
-      console.log(err)
       // TODO: システムエラー発生時のアラートを表示する
     }
   }

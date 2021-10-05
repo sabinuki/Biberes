@@ -52,7 +52,6 @@ export const SignIn = () => {
 
     try {
       const res = await signIn(params)
-      console.log(res)
 
       if (res.status === 200) {
         Cookies.set("_access_token", res.headers["access-token"])
@@ -65,7 +64,6 @@ export const SignIn = () => {
         // TODO: ステータスコードが200以外の場合はアラートを表示する
       }
     } catch (err) {
-      console.log(err)
       // TODO: システムエラー発生時のアラートを表示する
     }
   }
