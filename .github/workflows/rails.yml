@@ -27,6 +27,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set database.yml
+      run: cp -v config/database.ci.yml config/database.yml
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
