@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import DiagnosesButton from '../components/Buttons/DiagnosesButton.jsx';
 

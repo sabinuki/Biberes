@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+import { signIn } from '../lib/api/auth';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { userSlice } from '../features/userSlice';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,6 +39,40 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignIn = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const params = {
+      email: email,
+      password: password
+    }
+    const { signin } = userSlice.actions;
+
+    try {
+      const res = await signIn(params)
+
+      if (res.status === 200) {
+        Cookies.set("_access_token", res.headers["access-token"]);
+        Cookies.set("_client", res.headers["client"]);
+        Cookies.set("_uid", res.headers["uid"]);
+
+        dispatch(signin(res.data.data.name));
+
+        // TODO: マイページに飛ぶよう修正する
+        history.push("/");
+      } else {
+        // TODO: ステータスコードが200以外の場合はアラートを表示する
+      }
+    } catch (err) {
+      // TODO: システムエラー発生時のアラートを表示する
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,6 +95,7 @@ export const SignIn = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={event => setEmail(event.target.value)}
           />
           <TextField
             variant="outlined"
@@ -67,6 +107,7 @@ export const SignIn = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={event => setPassword(event.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -78,6 +119,7 @@ export const SignIn = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Sign In
           </Button>
