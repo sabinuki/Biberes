@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
+  const user = useSelector(selectUser);
+
+  let button = user ? <Button color="inherit" component={Link} to="/signOut">SignOut</Button>
+                    : <Button color="inherit" component={Link} to="/signin">SignIn</Button>;
 
   return (
     <div className={classes.root}>
@@ -33,7 +39,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Biberes
           </Typography>
-          <Button color="inherit" component={Link} to="/signin">SignIn</Button>
+          {button}
         </Toolbar>
       </AppBar>
     </div>

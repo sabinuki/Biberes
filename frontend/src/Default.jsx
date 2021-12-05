@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import { Diagnoses } from './containers/Diagnoses';
 import { SignUp } from './containers/SignUp';
-import { SignIn } from './containers/SignIn';
+import { SignIn } from './containers/organisms/SignIn';
 
 export class Default extends React.Component {
   render() {
