@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,8 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { userSlice, selectUser } from '../../features/userSlice';
+import { signOut } from '../../lib/api/auth';
+import Cookies from 'js-cookie';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,9 +28,35 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
   const user = useSelector(selectUser);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  let button = user ? <Button color="inherit" component={Link} to="/signOut">SignOut</Button>
-                    : <Button color="inherit" component={Link} to="/signin">SignIn</Button>;
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await signOut();
+
+      if(res.status === 200) {
+        const { signout } = userSlice.actions;
+
+        dispatch(signout(null));
+
+        Cookies.remove("_access_token");
+        Cookies.remove("_client");
+        Cookies.remove("_uid");
+
+        history.push("/signin");
+      } else {
+        // TODO: ステータスコードが200以外の場合はアラートを表示する
+      }
+    } catch (err) {
+      // TODO: システムエラー発生時のアラートを表示する
+    }
+  };
+
+  let button = user ? <Button color="inherit" onClick={handleSignOut}>SignOut</Button>
+  : <Button color="inherit" component={Link} to="/signin">SignIn</Button>;
 
   return (
     <div className={classes.root}>
