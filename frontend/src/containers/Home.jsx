@@ -6,7 +6,7 @@ const Body = styled.div`
   text-align: center;
 `;
 
-export const Diagnoses = () => {
+export const Home = () => {
   return (
     <Fragment>
       <Body>

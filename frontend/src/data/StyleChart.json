@@ -1,0 +1,54 @@
+{
+  "init": {
+    "text": "苦い味が好き？",
+    "answers": {
+      "yes": {"nextId": "clean"},
+      "no": {"nextId": "spicy"}
+    },
+    "isBeer": false
+  },
+  "clean": {
+    "text": "すっきりしたビールが飲みたい？",
+    "answers": {
+      "yes": {"nextId": "beer_pilsner"},
+      "no": {"nextId": "heavy"}
+    },
+    "isBeer": false
+  },
+  "heavy": {
+    "text": "アルコールが高く香りが強いビールが飲みたい？",
+    "answers": {
+      "yes": {"nextId": "beer_ipa"},
+      "no": {"nextId": "beer_pale_ale"}
+    },
+    "isBeer": false
+  },
+  "spicy": {
+    "text": "少しスパイシーでまろやかなビールが飲みたい？",
+    "answers": {
+      "yes": {"nextId": "beer_belgian_white"},
+      "no": {"nextId": "beer_weizen"}
+    },
+    "isBeer": false
+  },
+  "beer_pilsner": {
+    "text": "ピルスナー",
+    "isBeer": true
+  },
+  "beer_ipa": {
+    "text": "IPA",
+    "isBeer": true
+  },
+  "beer_pale_ale": {
+    "text": "ペールエール",
+    "isBeer": true
+  },
+  "beer_belgian_white": {
+    "text": "ベルジャンホワイト",
+    "isBeer": true
+  },
+  "beer_weizen": {
+    "text": "ヴァイツェン",
+    "isBeer": true
+  }
+}
