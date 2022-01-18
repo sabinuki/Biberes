@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button } from '../shared_style';
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 export default function DiagnosesButton () {
   return (
-    <Button>
+    <Button variant="contained" color="inherit" component={Link} to="/style_chart">
       ビアスタイルを診断する
     </Button>
   )
