@@ -44,7 +44,7 @@ class BeerStyleImporter
 
       {
         name: row['name'],
-        beer_style_id: saved_classes.key(row['class'])
+        beer_style_class_id: saved_classes.key(row['class'])
       }
     end
 
