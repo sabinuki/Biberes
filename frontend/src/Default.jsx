@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/layout/Header';
 import { Home } from './containers/Home';
+import { BeerStyles } from './containers/BeerStyles';
 import { SignUp } from './containers/SignUp';
 import { SignIn } from './containers/SignIn';
 import { StyleChart } from './containers/StyleChart';
@@ -18,6 +19,9 @@ export class Default extends React.Component {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/styles">
+              <BeerStyles />
             </Route>
             <Route exact path="/signup">
               <SignUp />

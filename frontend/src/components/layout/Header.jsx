@@ -55,7 +55,7 @@ export default function ButtonAppBar() {
     }
   };
 
-  let button = user ? <Button color="inherit" onClick={handleSignOut}>SignOut</Button>
+  let accountButton = user ? <Button color="inherit" onClick={handleSignOut}>SignOut</Button>
   : <Button color="inherit" component={Link} to="/signin">SignIn</Button>;
 
   return (
@@ -68,7 +68,8 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Biberes
           </Typography>
-          {button}
+          <Button color="inherit" component={Link} to="/styles">スタイル一覧</Button>
+          {accountButton}
         </Toolbar>
       </AppBar>
     </div>
