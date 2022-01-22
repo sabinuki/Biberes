@@ -49,7 +49,7 @@ jobs:
         bundle install --jobs 4 --retry 3
 
     - name: Migration
-      run: bundle exec rails db:prepare --trace
+      run: bundle exec rails db:schema:load --trace
 
     - name: Run rspec
       run: bundle exec rspec
