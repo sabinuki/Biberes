@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :beer_style_class do
-    name { "MyString" }
+    name { 'Ale' }
   end
 end

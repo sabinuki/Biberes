@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       namespace :auth do
         resources :sessions, only: %i(index)
       end
+
+      resources :beer_styles, only: %i(index)
     end
   end
 end
