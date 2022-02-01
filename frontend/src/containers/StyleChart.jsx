@@ -1,25 +1,10 @@
-import { Button, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, Container } from '@mui/material';
+import Box from '@mui/material/Box';
 import React, { useState } from 'react';
 import StyleChartCard from '../components/StyleChart/Cards/StyleChartCard';
 import ChartData from '../data/StyleChart.json';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-  },
-  chartArea: {
-    marginTop: theme.spacing(0),
-  },
-  answerArea: {
-    marginTop: theme.spacing(4),
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  }
-}));
-
 export const StyleChart = () => {
-  const classes = useStyles();
   const [cards, setCards] = useState([StyleChartCard(ChartData['init']['text'])]);
   const [yesNextId, setYesNextId] = useState(ChartData['init']['answers']['yes']['nextId']);
   const [noNextId, setNoNextId] = useState(ChartData['init']['answers']['no']['nextId']);
@@ -55,15 +40,15 @@ export const StyleChart = () => {
 
   return(
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <div className={classes.chartArea}>
+      <Box sx={{ marginTop: 8 }}>
+        <Box sx={{ marginTop: 8 }}>
           {cards.map((card,i) => <div key={i}>{card}</div>)}
-        </div>
-        <div className={classes.answerArea}>
+        </Box>
+        <Box sx={{ marginTop: 4, display: 'flex', justifyContent: 'space-evenly' }}>
           <Button variant="outlined" className="answer-button" style={{display: isBeer ? 'none' : 'inline-flex'}} onClick={selectYes}>はい</Button>
           <Button variant="outlined" className="answer-button" style={{display: isBeer ? 'none' : 'inline-flex'}} onClick={selectNo}>いいえ</Button>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Container>
   );
 }

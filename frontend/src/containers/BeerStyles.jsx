@@ -1,16 +1,9 @@
-import { Container, List, ListItem, ListItemText } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Container, List, ListItem, ListItemText } from '@mui/material';
+import Box from '@mui/material/Box';
 import React, { useEffect, useState } from 'react';
 import { getBeerStyles } from '../lib/api/beer_styles';
 
-const useStyles = makeStyles((theme) => ({
-  styleList: {
-    marginTop: theme.spacing(8),
-  },
-}));
-
 export const BeerStyles = () => {
-  const classes = useStyles();
   const [beerStyles, setBeerStyles] = useState([]);
 
   useEffect(() => {
@@ -30,7 +23,7 @@ export const BeerStyles = () => {
 
   return(
     <Container component="main" maxWidth="xs">
-      <div className={classes.styleList}>
+      <Box sx={{ marginTop: 8 }}>
         <List>
           {beerStyles.map((style, i) => {
             return(
@@ -40,7 +33,7 @@ export const BeerStyles = () => {
             );
           })}
         </List>
-      </div>
+      </Box>
     </Container>
   );
 }
