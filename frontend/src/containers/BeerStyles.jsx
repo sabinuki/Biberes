@@ -1,7 +1,7 @@
 import { Container, List, ListItem, ListItemText } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
-import { beerStyleIndex } from '../lib/api/beer_style';
+import { getBeerStyles } from '../lib/api/beer_styles';
 
 const useStyles = makeStyles((theme) => ({
   styleList: {
@@ -14,8 +14,8 @@ export const BeerStyles = () => {
   const [beerStyles, setBeerStyles] = useState([]);
 
   useEffect(() => {
-    const getBeerStyles = async () => {
-      const res = await beerStyleIndex();
+    const reqGetBeerStyles = async () => {
+      const res = await getBeerStyles();
 
       if (res.status === 200) {
         setBeerStyles(res.data.data);
@@ -25,7 +25,7 @@ export const BeerStyles = () => {
       }
     };
 
-    getBeerStyles();
+    reqGetBeerStyles();
   }, []);
 
   return(
@@ -34,7 +34,7 @@ export const BeerStyles = () => {
         <List>
           {beerStyles.map((style, i) => {
             return(
-              <ListItem button key={i}>
+              <ListItem button key={i} component="a" href={`/styles/${i + 1}`}>
                 <ListItemText>{style}</ListItemText>
               </ListItem>
             );

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         resources :sessions, only: %i(index)
       end
 
-      resources :beer_styles, only: %i(index)
+      resources :beer_styles, only: %i(index show)
     end
   end
 end
