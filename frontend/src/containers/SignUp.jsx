@@ -2,39 +2,21 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import Cookies from 'js-cookie';
 import { signUp } from '../lib/api/auth';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+const theme = createTheme();
 
 export const SignUp = () => {
-  const classes = useStyles();
   const history = useHistory();
 
   const [name, setName] = useState("")
@@ -74,100 +56,109 @@ export const SignUp = () => {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="off"
-                id="name"
-                label="Name"
-                name="name"
-                variant="outlined"
-                autoFocus
-                fullWidth
-                required
-                onChange={event => setName(event.target.value)}
-              />
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="off"
+                  id="name"
+                  label="Name"
+                  name="name"
+                  variant="outlined"
+                  autoFocus
+                  fullWidth
+                  required
+                  onChange={event => setName(event.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="off"
+                  id="user-id"
+                  label="User ID"
+                  name="user-id"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  onChange={event => setUserId(event.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="off"
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  onChange={event => setEmail(event.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="off"
+                  id="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  onChange={event => setPassword(event.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="off"
+                  id="password-confirmation"
+                  label="Password Confirmation"
+                  name="password-confirmation"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  onChange={event => setPasswordConfirmation(event.target.value)}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="off"
-                id="user-id"
-                label="User ID"
-                name="user-id"
-                variant="outlined"
-                fullWidth
-                required
-                onChange={event => setUserId(event.target.value)}
-              />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
+            >
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="/signin" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="off"
-                id="email"
-                label="Email Address"
-                name="email"
-                variant="outlined"
-                fullWidth
-                required
-                onChange={event => setEmail(event.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="off"
-                id="password"
-                label="Password"
-                name="password"
-                type="password"
-                variant="outlined"
-                fullWidth
-                required
-                onChange={event => setPassword(event.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="off"
-                id="password-confirmation"
-                label="Password Confirmation"
-                name="password-confirmation"
-                type="password"
-                variant="outlined"
-                fullWidth
-                required
-                onChange={event => setPasswordConfirmation(event.target.value)}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleSubmit}
-          >
-            Sign Up
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/signin" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }

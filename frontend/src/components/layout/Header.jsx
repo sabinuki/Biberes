@@ -1,32 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSlice, selectUser } from '../../features/userSlice';
 import { signOut } from '../../lib/api/auth';
 import Cookies from 'js-cookie';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
 export default function ButtonAppBar() {
-  const classes = useStyles();
   const user = useSelector(selectUser);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -59,19 +44,16 @@ export default function ButtonAppBar() {
   : <Button color="inherit" component={Link} to="/signin">SignIn</Button>;
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Biberes
           </Typography>
           <Button color="inherit" component={Link} to="/styles">スタイル一覧</Button>
           {accountButton}
         </Toolbar>
       </AppBar>
-    </div>
+    </Box>
   );
 }
