@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       end
 
       resources :beer_styles, only: %i(index show)
+      resources :breweries, only: %i(index)
     end
   end
 end
