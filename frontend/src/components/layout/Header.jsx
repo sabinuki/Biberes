@@ -51,6 +51,7 @@ export default function ButtonAppBar() {
             Biberes
           </Typography>
           <Button color="inherit" component={Link} to="/styles">スタイル一覧</Button>
+          <Button color="inherit" component={Link} to="/breweries">ブルワリー一覧</Button>
           {accountButton}
         </Toolbar>
       </AppBar>
