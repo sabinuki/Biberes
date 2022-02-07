@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_06_013338) do
+ActiveRecord::Schema.define(version: 2022_02_07_115139) do
 
   create_table "beer_style_classes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2022_02_06_013338) do
     t.integer "beer_style_class_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "beers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "brewery_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["brewery_id"], name: "index_beers_on_brewery_id"
   end
 
   create_table "breweries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -56,4 +64,5 @@ ActiveRecord::Schema.define(version: 2022_02_06_013338) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
+  add_foreign_key "beers", "breweries"
 end
