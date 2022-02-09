@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :beer do
-    string { "" }
-    brewery_id { 1 }
+    association :brewery
+
+    name { Faker::Beer.name }
   end
 end
