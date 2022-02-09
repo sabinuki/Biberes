@@ -1,2 +1,3 @@
 BeerStyleImporter.execute
 BreweryImporter.execute
+BeerImporter.execute
