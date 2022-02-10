@@ -26,8 +26,8 @@ export const Breweries = () => {
       <Box sx={{ marginTop: 8 }}>
         <List>
           {breweries.map((brewery, i) => {
-            return(
-              <ListItem button key={i} component="a" href="#">
+            return (
+              <ListItem button key={i} component="a" href={`/breweries/${i + 1}`}>
                 <ListItemText>{brewery['name']}</ListItemText>
               </ListItem>
             );

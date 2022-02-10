@@ -6,6 +6,7 @@ import { Home } from './containers/Home';
 import { BeerStyles } from './containers/BeerStyles';
 import { BeerStyle } from './containers/BeerStyle';
 import { Breweries } from './containers/Breweries';
+import { Brewery } from './containers/Brewery';
 import { SignUp } from './containers/SignUp';
 import { SignIn } from './containers/SignIn';
 import { StyleChart } from './containers/StyleChart';
@@ -24,6 +25,11 @@ export class Default extends React.Component {
             </Route>
             <Route exact path="/breweries">
               <Breweries />
+            </Route>
+            <Route exact path="/breweries/:id"
+            render={({ match }) =>
+              <Brewery match={match} />
+            }>
             </Route>
             <Route exact path="/styles">
               <BeerStyles />
