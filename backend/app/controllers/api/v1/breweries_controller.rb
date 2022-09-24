@@ -5,13 +5,26 @@ class Api::V1::BreweriesController < ApplicationController
   end
 
   def show
-    brewery = Brewery.find(brewery_params[:id])
+    brewery = Brewery.find(params[:id])
     render json: { status: 'SUCCESS', brewery: brewery, beers: brewery.beers }, status: :ok
+  end
+
+  def create
+    brewery = Brewery.new(brewery_params)
+
+    if brewery.save
+      render json: { status: 'SUCCESS', brewery: brewery }
+    else
+      render json: { status: 'ERROR', errors: brewery.errors }
+    end
   end
 
   private
 
   def brewery_params
-    params.permit(:id)
+    params.require(:brewery).permit(
+      :id,
+      :name
+    )
   end
 end
