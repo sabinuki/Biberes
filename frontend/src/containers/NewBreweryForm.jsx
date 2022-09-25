@@ -18,6 +18,7 @@ export const NewBreweryForm = () => {
   const history = useHistory();
 
   const [name, setName] = useState("")
+  const [errors, setErrors] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -28,15 +29,20 @@ export const NewBreweryForm = () => {
 
     try {
       const res = await createBrewery(params)
-      console.log(res.data.brewery.id)
+
       if (res.status === 200) {
+        if (res.data.status == 'ERROR') {
+          // TODO: サーバサイドのエラー時の見せ方を工夫する
+          setErrors('登録処理エラーが発生しました。一時的にサービスが利用できません。')
+          return
+        }
         // TODO: ブルワリー管理者ページに遷移させる
         history.push(`/breweries/${res.data.brewery.id}`)
       } else {
-        // TODO: エラー表示
+        setErrors('サーバー通信エラーが発生しました。一時的にサービスが利用できません。')
       }
     } catch (err) {
-      // TODO: エラー表示
+      setErrors('エラーが発生しました。一時的にサービスが利用できません。')
     }
   }
 
@@ -57,6 +63,9 @@ export const NewBreweryForm = () => {
           </Avatar>
           <Typography component="h1" variant="h5">
             ブルワリー登録
+          </Typography>
+          <Typography>
+            {errors}
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
