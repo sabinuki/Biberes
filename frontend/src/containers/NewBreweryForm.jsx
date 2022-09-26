@@ -31,7 +31,7 @@ export const NewBreweryForm = () => {
       const res = await createBrewery(params)
 
       if (res.status === 200) {
-        if (res.data.status == 'ERROR') {
+        if (res.data.status === 'ERROR') {
           // TODO: サーバサイドのエラー時の見せ方を工夫する
           setErrors('登録処理エラーが発生しました。一時的にサービスが利用できません。')
           return
