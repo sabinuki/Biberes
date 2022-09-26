@@ -10,6 +10,7 @@ import { Brewery } from './containers/Brewery';
 import { SignUp } from './containers/SignUp';
 import { SignIn } from './containers/SignIn';
 import { StyleChart } from './containers/StyleChart';
+import { NewBreweryForm } from 'containers/NewBreweryForm';
 
 export class Default extends React.Component {
   render() {
@@ -41,12 +42,15 @@ export class Default extends React.Component {
             </Route>
             <Route exact path="/signup">
               <SignUp />
-           </Route>
+            </Route>
             <Route exact path="/signin">
               <SignIn />
             </Route>
             <Route exact path="/style_chart">
               <StyleChart />
+            </Route>
+            <Route exact path="/newbreweryform">
+              <NewBreweryForm />
             </Route>
           </Switch>
         </main>

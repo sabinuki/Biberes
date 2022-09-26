@@ -7,3 +7,7 @@ export const getBreweries = () => {
 export const getBrewery = (params) => {
   return client.get(`breweries/${params.id}`, params);
 }
+
+export const createBrewery = (params) => {
+  return client.post('breweries', params);
+}
