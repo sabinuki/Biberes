@@ -1,6 +1,7 @@
 import { Box, Container, List, ListItem, ListItemText, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getBrewery } from 'lib/api/breweries';
+import BreweryQRCode from 'components/Elements/QRCode.jsx';
 
 export const Brewery = ({ match }) => {
   const [brewery, setBrewery] = useState('');
@@ -23,9 +24,12 @@ export const Brewery = ({ match }) => {
 
   const GettingReady = () => {
     return (
-      <Typography>
-        ビール情報準備中です
-      </Typography>
+      <Container component="main" maxWidth="xs">
+        <Typography>
+          ビール情報準備中です
+        </Typography>
+        <BreweryQRCode />
+      </Container>
     );
   }
 
