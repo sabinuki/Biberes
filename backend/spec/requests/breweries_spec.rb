@@ -11,7 +11,7 @@ RSpec.describe 'Api::V1::BeerStyles', type: :request do
         subject
 
         expect(response).to have_http_status(:success)
-        expect(response.parsed_body['data'].map { |data| data['name'] }).to include *breweries.map(&:name)
+        expect(response.parsed_body['breweries'].map { |b| b['name'] }).to include *breweries.map(&:name)
       end
     end
   end

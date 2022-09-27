@@ -11,7 +11,7 @@ export const Breweries = () => {
       const res = await getBreweries();
 
       if (res.status === 200) {
-        setBreweries(res.data.data);
+        setBreweries(res.data.breweries);
       } else {
         // TODO: 別途UIを用意する
         console.log(res.status);
@@ -27,7 +27,7 @@ export const Breweries = () => {
         <List>
           {breweries.map((brewery, i) => {
             return (
-              <ListItem button key={i} component="a" href={`/breweries/${i + 1}`}>
+              <ListItem button key={i} component="a" href={`/breweries/${brewery['id']}`}>
                 <ListItemText>{brewery['name']}</ListItemText>
               </ListItem>
             );
