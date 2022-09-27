@@ -125,5 +125,37 @@ RSpec.describe User, type: :model do
         it { is_expected.to be_invalid }
       end
     end
+
+    describe :roll do
+      context 'when roll is blank' do
+        let(:user) { build(:user, roll: '') }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context 'when roll is nil' do
+        let(:user) { build(:user, roll: nil) }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context 'when roll is general' do
+        let(:user) { build(:user, :general_user) }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'when roll is brewery' do
+        let(:user) { build(:user, :brewery_user) }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'when roll is admin' do
+        let(:user) { build(:user, :admin_user) }
+
+        it { is_expected.to be_valid }
+      end
+    end
   end
 end
