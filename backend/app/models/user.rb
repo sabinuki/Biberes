@@ -15,4 +15,11 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :password, confirmation: true
   validates :user_id, uniqueness: true, presence: true
+  validates :roll, presence: true
+
+  enum roll: {
+    general: 0,
+    brewery: 1,
+    admin: 2
+  }
 end

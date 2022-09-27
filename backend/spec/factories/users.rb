@@ -7,5 +7,18 @@ FactoryBot.define do
     name                  { Faker::Name.name }
     email                 { Faker::Internet.email }
     user_id               { Faker::Lorem.word }
+    roll                  { User.rolls.keys.sample }
+
+    trait :general_user do
+      roll { User.rolls[:general] }
+    end
+
+    trait :brewery_user do
+      roll { User.rolls[:brewery] }
+    end
+
+    trait :admin_user do
+      roll { User.rolls[:admin] }
+    end
   end
 end
