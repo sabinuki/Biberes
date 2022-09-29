@@ -11,6 +11,7 @@ import { SignUp } from './containers/SignUp';
 import { SignIn } from './containers/SignIn';
 import { StyleChart } from './containers/StyleChart';
 import { NewBreweryForm } from 'containers/NewBreweryForm';
+import { Index as AdminIndex } from 'containers/admin/index';
 
 export class Default extends React.Component {
   render() {
@@ -51,6 +52,9 @@ export class Default extends React.Component {
             </Route>
             <Route exact path="/newbreweryform">
               <NewBreweryForm />
+            </Route>
+            <Route exact path="/admin_page">
+              <AdminIndex />
             </Route>
           </Switch>
         </main>
