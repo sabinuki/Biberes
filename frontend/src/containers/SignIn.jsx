@@ -16,7 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import { userSlice } from '../features/userSlice';
+import { authSlice } from '../features/authSlice';
 
 const theme = createTheme();
 
@@ -34,7 +34,7 @@ export const SignIn = () => {
       email: email,
       password: password
     }
-    const { signin } = userSlice.actions;
+    const { signin } = authSlice.actions;
 
     try {
       const res = await signIn(params)
@@ -44,7 +44,7 @@ export const SignIn = () => {
         Cookies.set("_client", res.headers["client"]);
         Cookies.set("_uid", res.headers["uid"]);
 
-        dispatch(signin(res.data.data.name));
+        dispatch(signin(res.data.data));
 
         // TODO: マイページに飛ぶよう修正する
         history.push("/");

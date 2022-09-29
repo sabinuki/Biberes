@@ -7,12 +7,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from 'react-redux';
-import { userSlice, selectUser } from '../../features/userSlice';
+import { authSlice, selectAuth } from '../../features/authSlice';
 import { signOut } from '../../lib/api/auth';
 import Cookies from 'js-cookie';
 
 export default function ButtonAppBar() {
-  const user = useSelector(selectUser);
+  const auth = useSelector(selectAuth);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ export default function ButtonAppBar() {
       const res = await signOut();
 
       if(res.status === 200) {
-        const { signout } = userSlice.actions;
+        const { signout } = authSlice.actions;
 
         dispatch(signout(null));
 
@@ -40,7 +40,7 @@ export default function ButtonAppBar() {
     }
   };
 
-  let accountButton = user ? <Button color="inherit" onClick={handleSignOut}>SignOut</Button>
+  let accountButton = auth.user ? <Button color="inherit" onClick={handleSignOut}>SignOut</Button>
   : <Button color="inherit" component={Link} to="/signin">SignIn</Button>;
 
   return (
@@ -53,6 +53,7 @@ export default function ButtonAppBar() {
           <Button color="inherit" component={Link} to="/styles">スタイル一覧</Button>
           <Button color="inherit" component={Link} to="/breweries">ブルワリー一覧</Button>
           <Button color="inherit" component={Link} to="/newbreweryform">ブルワリー登録</Button>
+          {auth.user?.roll === 'admin' && <Button color="inherit" component={Link} to="/admin_page">adminページ</Button>}
           {accountButton}
         </Toolbar>
       </AppBar>
