@@ -53,7 +53,7 @@ export default function ButtonAppBar() {
           <Button color="inherit" component={Link} to="/styles">スタイル一覧</Button>
           <Button color="inherit" component={Link} to="/breweries">ブルワリー一覧</Button>
           <Button color="inherit" component={Link} to="/newbreweryform">ブルワリー登録</Button>
-          {auth.user?.roll === 'admin' && <Button color="inherit" component={Link} to="/admin_page">adminページ</Button>}
+          {auth.user?.roll === 'admin' && <Button color="inherit" component={Link} to="/admin">adminページ</Button>}
           {accountButton}
         </Toolbar>
       </AppBar>
