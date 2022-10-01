@@ -23,6 +23,7 @@ export const BreweryUserForm = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [errors, setErrors] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -40,18 +41,18 @@ export const BreweryUserForm = () => {
       const res = await signUp(params)
 
       if (res.status === 200) {
-        // ひとまずアカウント作成と同時にログインさせてしまう
-        // TODO: メール確認などを挟む対応は別途対応する
-        Cookies.set("_access_token", res.headers["access-token"])
-        Cookies.set("_client", res.headers["client"])
-        Cookies.set("_uid", res.headers["uid"])
-
-        history.push("/")
+        if (res.data.status === 'ERROR') {
+          // TODO: サーバサイドのエラー時の見せ方を工夫する
+          setErrors('登録処理エラーが発生しました。一時的にサービスが利用できません。')
+          return
+        }
+        // TODO: ブルワリーユーザー登録完了メッセージを表示する
+        history.push("/admin")
       } else {
-        // TODO: ステータスコードが200以外の場合はアラートを表示する
+        setErrors('サーバー通信エラーが発生しました。一時的にサービスが利用できません。')
       }
     } catch (err) {
-      // TODO: システムエラー発生時のアラートを表示する
+      setErrors('エラーが発生しました。一時的にサービスが利用できません。')
     }
   }
 
@@ -72,6 +73,9 @@ export const BreweryUserForm = () => {
           </Avatar>
           <Typography component="h1" variant="h5">
             ブルワリーユーザー登録
+          </Typography>
+          <Typography>
+            {errors}
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
