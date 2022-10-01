@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import DiagnosesButton from '../components/Buttons/DiagnosesButton.jsx';
+import LinkButton from '../components/Buttons/LinkButton.jsx';
 
 const Body = styled.div`
   text-align: center;
@@ -12,7 +12,7 @@ export const Home = () => {
       <Body>
         <p>好みを選択するだけであなたにおすすめのビアスタイルを提案いたします。</p>
         <p>今すぐあなたに合うビアスタイルを探してみましょう！</p>
-        <DiagnosesButton />
+        <LinkButton link="/style_chart" text="ビアスタイルを診断する" />
       </Body>
     </Fragment>
   )

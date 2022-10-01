@@ -11,7 +11,8 @@ import { SignUp } from './containers/SignUp';
 import { SignIn } from './containers/SignIn';
 import { StyleChart } from './containers/StyleChart';
 import { NewBreweryForm } from 'containers/NewBreweryForm';
-import { Index as AdminIndex } from 'containers/admin/index';
+import { Index as AdminIndex } from 'containers/admin/Index';
+import { BreweryUserForm } from 'containers/admin/BreweryUserForm';
 
 export class Default extends React.Component {
   render() {
@@ -53,8 +54,11 @@ export class Default extends React.Component {
             <Route exact path="/newbreweryform">
               <NewBreweryForm />
             </Route>
-            <Route exact path="/admin_page">
+            <Route exact path="/admin">
               <AdminIndex />
+            </Route>
+            <Route exact path="/admin/brewery-user-form">
+              <BreweryUserForm />
             </Route>
           </Switch>
         </main>
