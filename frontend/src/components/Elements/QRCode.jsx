@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQRCode } from 'react-qrcodes';
 
-export default function BreweryQRCode() {
+export default function QRCode() {
   const [inputRef] = useQRCode({
     // TODO: textに遷移させたいURLを記述する
     text: 'entrypoint/breweries/3',

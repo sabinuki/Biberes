@@ -13,6 +13,7 @@ import { StyleChart } from './containers/StyleChart';
 import { NewBreweryForm } from 'containers/NewBreweryForm';
 import { Index as AdminIndex } from 'containers/admin/Index';
 import { BreweryUserForm } from 'containers/admin/BreweryUserForm';
+import { MyPage as BreweryMyPage } from 'containers/brewery/MyPage';
 
 export class Default extends React.Component {
   render() {
@@ -59,6 +60,9 @@ export class Default extends React.Component {
             </Route>
             <Route exact path="/admin/brewery-user-form">
               <BreweryUserForm />
+            </Route>
+            <Route exact path="/brewery_mypage">
+              <BreweryMyPage />
             </Route>
           </Switch>
         </main>
