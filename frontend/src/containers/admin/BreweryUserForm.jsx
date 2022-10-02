@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import Cookies from 'js-cookie';
 import { signUp } from 'lib/api/auth';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
